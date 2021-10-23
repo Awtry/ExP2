@@ -1,24 +1,22 @@
 package com.awtry.exp2.data.dao
 
-import androidx.room.Dao
 import androidx.room.Insert
-import androidx.room.OnConflictStrategy.IGNORE
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import androidx.room.Update
-import retrofit2.http.Query
+import com.awtry.exp2.domain.model.Food
 
-@Dao
 interface FoodDAO {
 
-    //Base de datos local para cuando se desconecte de la red aun se puendan
-    //ver los datos
+    //SOLO PRARA PLATILLOS
     //TODO: Cambiar la dirección de la base de datos
-    @Query("SELECT * FROM P2Elemento WHERE name LIKE :filter")
-    fun getFoodByName(filter: String): List<P2Elemento>
+    @Query("SELECT * FROM Food WHERE name LIKE :filter")
+    fun getFoodByName(filter: String): List<Food>
 
-    @Insert(onConflict = IGNORE)
-    fun onSaveCocktail(cocktails: List<P2Elemento>): List<Long>
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    fun onSaveFood(cocktails: List<Food>): List<Long>
 
     @Update
-    fun onUpdateCocktail(cocktail: P2Elemento): Int
+    fun onUpdateFood(cocktail: Food): Int
 
 }
