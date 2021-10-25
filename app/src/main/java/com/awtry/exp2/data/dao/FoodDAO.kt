@@ -1,11 +1,9 @@
 package com.awtry.exp2.data.dao
 
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import com.awtry.exp2.domain.model.Food
 
+@Dao
 interface FoodDAO {
 
     //SOLO PRARA PLATILLOS

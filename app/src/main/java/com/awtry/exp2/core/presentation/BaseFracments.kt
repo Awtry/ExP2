@@ -5,15 +5,15 @@ import android.view.View
 import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
 
 import com.awtry.exp2.core.exception.Failure
 
-abstract class BaseFragment(@LayoutRes layoutId: Int) : Fragment(layoutId), OnFailure {
+abstract class BaseFragment(@LayoutRes layoutId: Int) : Fragment(layoutId), OnFailure  {
 
     //Inyección de datos, no se inciializa hasta que se vaya a usar
     //TODO: Revisar lo del viewController, creo que se solucionara cuando vaya llenando los demás huecos
-    //val navController by lazy { findNavController() }
+    val navController by lazy { findNavController() }
     val baseActivitiy by lazy { requireActivity() as BaseActivitiy }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -21,7 +21,7 @@ abstract class BaseFragment(@LayoutRes layoutId: Int) : Fragment(layoutId), OnFa
 
         //Cuando otro fragmento quiera usarse, este lo pondra sin problema
         //hablando del menú inferior
-        //baseActivitiy.setUpNavigation(navController)
+        baseActivitiy.setUpNavigation(navController)
         setBinding(view)
     }
 

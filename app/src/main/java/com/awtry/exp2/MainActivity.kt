@@ -1,6 +1,5 @@
 package com.awtry.exp2
 
-
 import android.os.Bundle
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
