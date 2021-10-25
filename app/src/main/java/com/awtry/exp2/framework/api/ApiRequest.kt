@@ -1,6 +1,6 @@
 package com.awtry.exp2.framework.api
 
-import com.awtry.exp2.core.NetworkHandler
+import com.awtry.exp2.core.plataform.NetworkHandler
 import com.awtry.exp2.core.exception.Failure
 import com.awtry.exp2.core.functional.Either
 import retrofit2.Call

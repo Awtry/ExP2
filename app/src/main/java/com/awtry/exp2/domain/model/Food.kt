@@ -21,4 +21,5 @@ class Food(
     @Json(name = "strYoutube") val youtube: String = ""
 ) : Parcelable {
 
+    //TODO: Agregar la parte de la fotografía
 }

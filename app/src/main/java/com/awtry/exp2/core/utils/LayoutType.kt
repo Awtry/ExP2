@@ -1,4 +1,4 @@
-package com.awtry.exp2.core
+package com.awtry.exp2.core.utils
 
 enum class LayoutType {
     LINEAR, GRID

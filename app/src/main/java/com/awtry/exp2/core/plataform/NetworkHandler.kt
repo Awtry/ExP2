@@ -1,4 +1,4 @@
-package com.awtry.exp2.core
+package com.awtry.exp2.core.plataform
 
 import android.content.Context
 import com.awtry.exp2.core.extension.networkInfo

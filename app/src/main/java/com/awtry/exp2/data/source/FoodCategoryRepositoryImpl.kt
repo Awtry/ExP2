@@ -1,6 +1,6 @@
 package com.awtry.exp2.data.source
 
-import com.awtry.exp2.core.NetworkHandler
+import com.awtry.exp2.core.plataform.NetworkHandler
 import com.awtry.exp2.core.exception.Failure
 import com.awtry.exp2.core.functional.Either
 import com.awtry.exp2.data.api.FoodCategoryApi
@@ -10,6 +10,9 @@ import com.awtry.exp2.domain.model.FoodCategory
 import com.awtry.exp2.domain.repository.FoodCategoryRepository
 import com.awtry.exp2.framework.api.ApiRequest
 import javax.inject.Inject
+
+//TODO: Agregar el controlador de los dos, tanto para categoría como para las comidas
+//después se hará el cambio seguramente para la parte de usuario.
 
 class FoodCategoryRepositoryImpl @Inject constructor(
     private val foodCategoryApi: FoodCategoryApi,
