@@ -2,4 +2,11 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_graph" />
+    android:id="@+id/main_graph"
+    app:startDestination="@id/foodFragment2">
+    <fragment
+        android:id="@+id/foodFragment2"
+        android:name="com.awtry.exp2.presentation.food.FoodFragment"
+        android:label="food_fragment"
+        tools:layout="@layout/food_fragment" />
+</navigation>
