@@ -85,9 +85,11 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1'
+
     //Live
     //ViewModel and live data
-    def lifecycle_version = "2.4.0-beta01"
+    def lifecycle_version = "2.4.0-rc01"
     // ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
     // LiveData
