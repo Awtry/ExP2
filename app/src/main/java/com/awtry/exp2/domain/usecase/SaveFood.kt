@@ -9,5 +9,4 @@ class SaveFood @Inject constructor(private val foodRepository: FoodRepository) :
     UseCase<Boolean, List<Food>>() {
 
     override suspend fun run(params: List<Food>) = foodRepository.saveFood(params)
-
 }

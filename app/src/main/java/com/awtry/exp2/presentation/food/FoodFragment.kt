@@ -44,6 +44,9 @@ class FoodFragment : BaseFragment(R.layout.food_fragment) {
     }
 
     private fun setUpAdapter(foods: List<Food>) {
+
+        //TODO: ¿Agregar lo de pantalla vacía?
+
         adapter.addData(foods)
 
         //TODO: Agregar el detalle del platillo
@@ -75,12 +78,12 @@ class FoodFragment : BaseFragment(R.layout.food_fragment) {
 
         })
 
-        binding.SwipRefresh.setOnClickListener{
+        binding.SwipRefresh.setOnClickListener {
             //TODO: Reparar esta zona
-            val newLayout = if (adapter.layoutType == LayoutType.LINEAR){
+            val newLayout = if (adapter.layoutType == LayoutType.LINEAR) {
                 binding.reciclador.layoutManager = LinearLayoutManager(requireContext())
                 LayoutType.LINEAR
-            }else  {
+            } else {
                 binding.reciclador.layoutManager = LinearLayoutManager(requireContext())
                 LayoutType.LINEAR
             }

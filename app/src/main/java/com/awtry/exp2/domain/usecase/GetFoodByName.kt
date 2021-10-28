@@ -9,5 +9,4 @@ class GetFoodByName @Inject constructor(private val foodRepository: FoodReposito
     UseCase<FoodResponse, String>(){
 
     override suspend fun run(params: String) = foodRepository.getFoodByName(params)
-
 }

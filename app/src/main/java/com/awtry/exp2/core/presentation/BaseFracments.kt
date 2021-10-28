@@ -9,7 +9,7 @@ import androidx.navigation.fragment.findNavController
 
 import com.awtry.exp2.core.exception.Failure
 
-abstract class BaseFragment(@LayoutRes layoutId: Int) : Fragment(layoutId), OnFailure  {
+abstract class BaseFragment(@LayoutRes layoutId: Int) : Fragment(layoutId), OnFailure {
 
     //Inyección de datos, no se inciializa hasta que se vaya a usar
     //TODO: Revisar lo del viewController, creo que se solucionara cuando vaya llenando los demás huecos
@@ -24,7 +24,6 @@ abstract class BaseFragment(@LayoutRes layoutId: Int) : Fragment(layoutId), OnFa
         baseActivitiy.setUpNavigation(navController)
         setBinding(view)
     }
-
 
     abstract fun setBinding(view: View)
 

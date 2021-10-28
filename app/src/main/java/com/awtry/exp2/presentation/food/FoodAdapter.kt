@@ -10,20 +10,21 @@ import com.awtry.exp2.databinding.RowFoodBinding
 import com.awtry.exp2.domain.model.Food
 
 @SuppressLint("NotifyDataSetChanged")
-class FoodAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+class FoodAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var list: MutableList<Food> = mutableListOf()
+
     //TODO: Revisar la forma en la que se van a revisar los datos
     var layoutType = LayoutType.LINEAR
 
     lateinit var listener: (food: Food) -> Unit
 
-    fun addData(list: List<Food>){
+    fun addData(list: List<Food>) {
         this.list = list.toMutableList()
         notifyDataSetChanged()
     }
 
-    fun changeView(layoutType: LayoutType){
+    fun changeView(layoutType: LayoutType) {
         this.layoutType = layoutType
         notifyDataSetChanged()
     }
@@ -49,18 +50,18 @@ class FoodAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
     //Para poder rellenar los datos, primero hay que inflarlos
 
-    class ViewHolderItem(private val binding: RowFoodBinding) : BaseViewHolder(binding.root){
-        override fun bind(data: Food, listener: (food: Food) -> Unit){
+    class ViewHolderItem(private val binding: RowFoodBinding) : BaseViewHolder(binding.root) {
+        override fun bind(data: Food, listener: (food: Food) -> Unit) {
             binding.itemFood = data
 
-            binding.root.setOnClickListener{
+            binding.root.setOnClickListener {
                 listener(data)
             }
 
         }
     }
 
-    abstract class BaseViewHolder(private val root: View) : RecyclerView.ViewHolder(root){
+    abstract class BaseViewHolder(private val root: View) : RecyclerView.ViewHolder(root) {
         abstract fun bind(data: Food, listener: (food: Food) -> Unit)
     }
 
