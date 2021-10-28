@@ -6,27 +6,40 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.RecyclerView
 import com.awtry.exp2.R
+import com.awtry.exp2.core.extension.observe
+import com.awtry.exp2.core.presentation.BaseFragment
+import com.awtry.exp2.core.utils.LayoutType
+import com.awtry.exp2.databinding.FoodCategoryFragmentBinding
+import com.awtry.exp2.databinding.RowFoodBinding
+import com.awtry.exp2.presentation.food.FoodAdapter
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.WithFragmentBindings
+import kotlinx.coroutines.DelicateCoroutinesApi
 
-class FoodCategory : Fragment() {
+@AndroidEntryPoint
+@WithFragmentBindings
+@DelicateCoroutinesApi
+class FoodCategory : BaseFragment(R.layout.food_category_fragment) {
 
-    companion object {
-        fun newInstance() = FoodCategory()
+    private lateinit var binding: FoodCategoryFragmentBinding
+
+    private val adapter: FoodCategoryAdapter by lazy { FoodCategoryAdapter() }
+    private val foodCategoryViewModel by viewModels<FoodCategoryViewModel>()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        foodCategoryViewModel.apply {
+            observe(state, ::onViewStateChanged)
+            failure(failure, ::handleFailure)
+        }
     }
 
-    private lateinit var viewModel: FoodCategoryViewModel
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.food_category_fragment, container, false)
+    override fun setBinding(view: View) {
+        TODO("Not yet implemented")
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(FoodCategoryViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
 
 }

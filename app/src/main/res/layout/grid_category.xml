@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="itemCategory"
+            type="com.awtry.exp2.domain.model.FoodCategory" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imgCategory"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginBottom="15dp"
+                app:layout_constraintBottom_toTopOf="@id/txtNombre"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:loadFromUrl="@{itemCategory.imageCategory}"
+                />
+
+            <TextView
+                android:id="@+id/txtNombre"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:ellipsize="end"
+                android:lines="2"
+                android:text="@{itemCategory.nameCategory}"
+                app:layout_constraintBottom_toTopOf="@id/txtDescripcion"
+                app:layout_constraintEnd_toEndOf="@id/imgCategory"
+                app:layout_constraintStart_toStartOf="@id/imgCategory"
+                app:layout_constraintTop_toBottomOf="@id/imgCategory"
+                tools:text="Esta cosa es solo el nombre"
+                />
+
+            <TextView
+                android:id="@+id/txtDescripcion"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:ellipsize="end"
+                android:lines="2"
+                android:text="@{itemCategory.descriptionCategory}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/imgCategory"
+                app:layout_constraintEnd_toEndOf="@id/imgCategory"
+                app:layout_constraintTop_toBottomOf="@id/txtNombre"
+                tools:text="Esto es la descripción de la categoria "
+                />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+</layout>
