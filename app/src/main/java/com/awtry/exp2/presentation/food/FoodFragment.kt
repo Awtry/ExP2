@@ -64,7 +64,7 @@ class FoodFragment : BaseFragment(R.layout.food_fragment) {
         binding = FoodFragmentBinding.bind(view)
         binding.lifecycleOwner = this
 
-        binding.searchBarFood.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        /*binding.searchBarFood.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextSubmit(query: String?): Boolean {
                 foodViewModel.doGetFoodByName(query ?: "")
@@ -76,7 +76,7 @@ class FoodFragment : BaseFragment(R.layout.food_fragment) {
                 return true
             }
 
-        })
+        })*/
 
         binding.SwipRefresh.setOnClickListener {
             //TODO: Reparar esta zona

@@ -12,11 +12,11 @@ import javax.inject.Inject
 @DelicateCoroutinesApi
 @HiltViewModel
 class FoodViewModel @Inject constructor(
-    private val getFoodByName: GetFoodByName,
-    private val saveFood: SaveFood
+    //private val getFoodByName: GetFoodByName,
+    //private val saveFood: SaveFood
 ) : BaseViewModel() {
 
-    fun doGetFoodByName(name: String){
+    /*fun doGetFoodByName(name: String){
         getFoodByName(name){
             it.fold(::handleFailure){
                 state.value = FoodViewState.FoodReceived(it.dishses ?: listOf())
@@ -34,5 +34,5 @@ class FoodViewModel @Inject constructor(
                 it
             }
         }
-    }
+    }*/
 }

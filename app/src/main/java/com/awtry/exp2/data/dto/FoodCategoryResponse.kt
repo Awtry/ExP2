@@ -5,4 +5,4 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 //TODO: Camiar a donde esta apuntando
-data class FoodCategoryResponse(val dishCategory: List<FoodCategory>? = listOf())
+data class FoodCategoryResponse(val dishCategories: List<FoodCategory>? = listOf())

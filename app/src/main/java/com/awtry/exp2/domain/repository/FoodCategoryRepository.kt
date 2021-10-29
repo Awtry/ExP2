@@ -7,7 +7,7 @@ import com.awtry.exp2.domain.model.FoodCategory
 
 interface FoodCategoryRepository {
 
-    fun getFoodCategoryByName(name: String): Either<Failure, FoodCategoryResponse>
+    fun getAllFoodCategories(): Either<Failure, FoodCategoryResponse>
 
     fun saveFoodCategory(foodCategories: List<FoodCategory>): Either<Failure, Boolean>
 

@@ -19,7 +19,8 @@ class FoodCategoryRepositoryImpl @Inject constructor(
     private val foodCategoryDAO: FoodCategoryDAO,
     private val networkHandler: NetworkHandler
 ) : FoodCategoryRepository, ApiRequest {
-    override fun getFoodCategoryByName(name: String): Either<Failure, FoodCategoryResponse> {
+
+    /*override fun getFoodCategoryByName(name: String): Either<Failure, FoodCategoryResponse> {
         val result = makeRequest(
             networkHandler,
             foodCategoryApi.getFoodCategoryByName(name),
@@ -30,6 +31,24 @@ class FoodCategoryRepositoryImpl @Inject constructor(
         return if (result.isLeft) {
 
             val localResult = foodCategoryDAO.getFoodCategoryByName("%$name%")
+
+            if (localResult.isEmpty()) result
+            else Either.Right(FoodCategoryResponse(localResult))
+
+        } else result
+    }*/
+
+    override fun getAllFoodCategories(): Either<Failure, FoodCategoryResponse> {
+        val result = makeRequest(
+            networkHandler,
+            foodCategoryApi.getallFoodCategories(),
+            { it },
+            FoodCategoryResponse(emptyList())
+        )
+
+        return if (result.isLeft) {
+
+            val localResult = foodCategoryDAO.getAllFoodCategories()
 
             if (localResult.isEmpty()) result
             else Either.Right(FoodCategoryResponse(localResult))

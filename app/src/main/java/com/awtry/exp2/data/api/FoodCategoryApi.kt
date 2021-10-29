@@ -11,7 +11,8 @@ interface FoodCategoryApi {
     //www.themealdb.com/api/json/v1/1/categories.php
 
     @GET("json/v1/1/categories.php")
-    fun getFoodCategoryByName(@Query("s") name: String): Call<FoodCategoryResponse>
+    //Para traer todos los parametros, sin darle algo para buscar.
+    fun getallFoodCategories(): Call<FoodCategoryResponse>
     //@POST
     //@PUT
     //@DELETE

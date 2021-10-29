@@ -1,17 +1,38 @@
 package com.awtry.exp2.presentation.foodCategory
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.awtry.exp2.core.exception.Failure
-import com.awtry.exp2.core.presentation.BaseViewState
+import com.awtry.exp2.core.interactor.UseCase
+import com.awtry.exp2.core.presentation.BaseViewModel
+import com.awtry.exp2.domain.model.FoodCategory
+import com.awtry.exp2.domain.usecase.GetAllFoodCategories
+import com.awtry.exp2.domain.usecase.SaveCategory
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.DelicateCoroutinesApi
+import javax.inject.Inject
 
-class FoodCategoryViewModel : ViewModel() {
-    var state: MutableLiveData<BaseViewState> = MutableLiveData()
-    var failure: MutableLiveData<Failure> = MutableLiveData()
+@DelicateCoroutinesApi
+@HiltViewModel
+class FoodCategoryViewModel @Inject constructor(
+    private val getAllFoodCategories: GetAllFoodCategories,
+    private val saveCategory: SaveCategory
+) : BaseViewModel() {
 
-    protected fun handleFailure(failure: Failure) {
-        this.failure.value = failure
-        state.value = BaseViewState.HideLoading
+    fun doGetFoodCategories(){
+        getAllFoodCategories(UseCase.None()){
+            it.fold(::handleFailure){
+                state.value = FoodCategoryViewState.FoodCategoryReceived(it.dishCategories ?: listOf())
+
+               // saveFoodCategory(it.dishCategories ?: listOf())
+                true
+            }
+        }
+    }
+
+    private fun saveFoodCategory(foodCategory: List<FoodCategory>){
+        saveCategory(foodCategory){
+            it.fold(::handleFailure){
+                it
+            }
+        }
     }
 
 }

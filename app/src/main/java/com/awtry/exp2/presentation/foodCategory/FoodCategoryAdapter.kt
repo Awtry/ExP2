@@ -56,8 +56,6 @@ class FoodCategoryAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             binding.root.setOnClickListener {
                 listener(data)
             }
-
-
         }
     }
 

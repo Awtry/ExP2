@@ -6,14 +6,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.awtry.exp2.R
+import com.awtry.exp2.core.extension.failure
 import com.awtry.exp2.core.extension.observe
 import com.awtry.exp2.core.presentation.BaseFragment
+import com.awtry.exp2.core.presentation.BaseViewState
 import com.awtry.exp2.core.utils.LayoutType
 import com.awtry.exp2.databinding.FoodCategoryFragmentBinding
 import com.awtry.exp2.databinding.RowFoodBinding
+import com.awtry.exp2.domain.model.FoodCategory
 import com.awtry.exp2.presentation.food.FoodAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.WithFragmentBindings
@@ -37,8 +42,49 @@ class FoodCategory : BaseFragment(R.layout.food_category_fragment) {
         }
     }
 
+    override fun onViewStateChanged(state: BaseViewState?) {
+        super.onViewStateChanged(state)
+        when (state) {
+            is FoodCategoryViewState.FoodCategoryReceived -> setUpAdapter(state.foodCategories)
+        }
+    }
+
+    private fun setUpAdapter(foodCategory: List<FoodCategory>) {
+
+        //TODO: Pantalla vacía
+        adapter.addDataCategory(foodCategory)
+
+        //TODO: Detalle ?
+        adapter.listener = {
+            //navController.navigate()
+        }
+
+        //TODO: Reciclador
+        binding.recicladorCategory.apply {
+            isVisible = foodCategory.isNotEmpty()
+            adapter = this@FoodCategory.adapter
+        }
+
+    }
+
     override fun setBinding(view: View) {
-        TODO("Not yet implemented")
+        binding = FoodCategoryFragmentBinding.bind(view)
+        binding.lifecycleOwner = this
+
+        foodCategoryViewModel.doGetFoodCategories()
+
+        /*binding.swipCateRefresh.setOnClickListener {
+            //TODO: Realmente encontrar la forma de solo salzar uno
+            val newLayout = if (adapter.layoutType == LayoutType.GRID) {
+                binding.recicladorCategory.layoutManager = LinearLayoutManager(requireContext())
+                LayoutType.GRID
+            } else {
+                binding.recicladorCategory.layoutManager = LinearLayoutManager(requireContext())
+                LayoutType.GRID
+            }
+
+            adapter.changeView(newLayout)
+        }*/
     }
 
 
