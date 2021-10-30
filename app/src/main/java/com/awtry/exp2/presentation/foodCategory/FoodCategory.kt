@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.awtry.exp2.R
@@ -45,23 +46,24 @@ class FoodCategory : BaseFragment(R.layout.food_category_fragment) {
     override fun onViewStateChanged(state: BaseViewState?) {
         super.onViewStateChanged(state)
         when (state) {
-            is FoodCategoryViewState.FoodCategoryReceived -> setUpAdapter(state.foodCategories)
+            is FoodCategoryViewState.FoodCategoryReceived -> setUpAdapter(state.categories)
         }
     }
 
-    private fun setUpAdapter(foodCategory: List<FoodCategory>) {
+    private fun setUpAdapter(categories: List<FoodCategory>) {
 
+       // binding.initialView.isVisible = categories.isEmpty()
         //TODO: Pantalla vacía
-        adapter.addDataCategory(foodCategory)
+        adapter.addDataCategory(categories)
 
         //TODO: Detalle ?
         adapter.listener = {
-            //navController.navigate()
+            navController.navigate(FoodCategoryDirections.actionFoodCategoryToFoodFragment2(it.nameCategory))
         }
 
         //TODO: Reciclador
         binding.recicladorCategory.apply {
-            isVisible = foodCategory.isNotEmpty()
+            isVisible = categories.isNotEmpty()
             adapter = this@FoodCategory.adapter
         }
 
@@ -73,19 +75,23 @@ class FoodCategory : BaseFragment(R.layout.food_category_fragment) {
 
         foodCategoryViewModel.doGetFoodCategories()
 
-        /*binding.swipCateRefresh.setOnClickListener {
+        binding.swipCateRefresh.setOnClickListener {
             //TODO: Realmente encontrar la forma de solo salzar uno
-            val newLayout = if (adapter.layoutType == LayoutType.GRID) {
-                binding.recicladorCategory.layoutManager = LinearLayoutManager(requireContext())
-                LayoutType.GRID
-            } else {
-                binding.recicladorCategory.layoutManager = LinearLayoutManager(requireContext())
-                LayoutType.GRID
-            }
+        }
 
-            adapter.changeView(newLayout)
-        }*/
+
+        val newLayout = if (adapter.layoutType == LayoutType.GRID) {
+            binding.recicladorCategory.layoutManager = GridLayoutManager(requireContext(),3)
+            LayoutType.GRID
+        } else {
+            binding.recicladorCategory.layoutManager = GridLayoutManager(requireContext(), 3)
+            LayoutType.GRID
+        }
+
+        adapter.changeView(newLayout)
     }
+
+
 
 
 }

@@ -16,6 +16,25 @@ class FoodRepositoryImpl @Inject constructor(
     private val foodDAO: FoodDAO,
     private val networkHandler: NetworkHandler
 ): FoodRepository, ApiRequest {
+
+    override fun getFoodByCategory(name: String): Either<Failure, FoodResponse> {
+        val result = makeRequest(
+            networkHandler,
+            foodApi.getFoodByCategory(name),
+            { it },
+            FoodResponse(emptyList())
+        )
+
+        return if (result.isLeft) {
+
+            val localResult = foodDAO.getFoodByCategory("%$name%")
+
+            if (localResult.isEmpty()) result
+            else Either.Right(FoodResponse(localResult))
+
+        } else result
+    }
+
     override fun getFoodByName(name: String): Either<Failure, FoodResponse> {
         val result = makeRequest(
             networkHandler,
@@ -34,9 +53,9 @@ class FoodRepositoryImpl @Inject constructor(
         } else result
     }
 
-    override fun saveFood(food: List<Food>): Either<Failure, Boolean> {
-        val result = foodDAO.onSaveFood(food)
-        return if (result.size == food.size) Either.Right(true)
+    override fun saveFood(meals: List<Food>): Either<Failure, Boolean> {
+        val result = foodDAO.onSaveFood(meals)
+        return if (result.size == meals.size) Either.Right(true)
         else Either.Left(Failure.DatabaseError)
     }
 

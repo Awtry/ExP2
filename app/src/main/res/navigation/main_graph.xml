@@ -3,10 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_graph"
-    app:startDestination="@id/foodFragment2">
+    app:startDestination="@id/foodCategory">
+
+    <fragment
+        android:id="@+id/foodCategory"
+        android:name="com.awtry.exp2.presentation.foodCategory.FoodCategory"
+        android:label="food_category_fragment"
+        tools:layout="@layout/food_category_fragment" >
+        <action
+            android:id="@+id/action_foodCategory_to_foodFragment2"
+            app:destination="@id/foodFragment2" />
+    </fragment>
+
     <fragment
         android:id="@+id/foodFragment2"
         android:name="com.awtry.exp2.presentation.food.FoodFragment"
         android:label="food_fragment"
-        tools:layout="@layout/food_fragment" />
+        tools:layout="@layout/food_fragment" >
+
+
+        <argument
+            android:name="food"
+            app:argType="string"
+            android:defaultValue="Fish"
+            />
+
+    </fragment>
+
 </navigation>

@@ -11,7 +11,10 @@ interface FoodApi {
     //Link de referencia
     //www.themealdb.com/api/json/v1/1/search.php?s=
 
-    @GET("json/v1/1/search.php?")
+    @GET("json/v1/1/filter.php")
+    fun getFoodByCategory(@Query("c") name: String): Call<FoodResponse>
+
+    @GET("json/v1/1/search.php")
     fun getFoodByName(@Query("s") name: String): Call<FoodResponse>
     //@POST
     //@PUT

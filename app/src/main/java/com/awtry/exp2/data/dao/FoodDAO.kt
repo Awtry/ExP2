@@ -8,13 +8,17 @@ interface FoodDAO {
 
     //SOLO PRARA PLATILLOS
     //TODO: Cambiar la dirección de la base de datos
+
+    @Query("SELECT * FROM Food WHERE category LIKE :filter")
+    fun getFoodByCategory(filter: String): List<Food>
+
     @Query("SELECT * FROM Food WHERE name LIKE :filter")
     fun getFoodByName(filter: String): List<Food>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun onSaveFood(cocktails: List<Food>): List<Long>
+    fun onSaveFood(meals: List<Food>): List<Long>
 
     @Update
-    fun onUpdateFood(cocktail: Food): Int
+    fun onUpdateFood(meals: Food): Int
 
 }

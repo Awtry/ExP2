@@ -5,6 +5,7 @@ import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.awtry.exp2.R
 import com.awtry.exp2.core.extension.failure
@@ -24,7 +25,7 @@ import kotlinx.coroutines.DelicateCoroutinesApi
 class FoodFragment : BaseFragment(R.layout.food_fragment) {
 
     private lateinit var binding: FoodFragmentBinding
-
+    private val args: FoodFragmentArgs by navArgs()
     private val adapter: FoodAdapter by lazy { FoodAdapter() }
     private val foodViewModel by viewModels<FoodViewModel>()
 
@@ -33,6 +34,8 @@ class FoodFragment : BaseFragment(R.layout.food_fragment) {
         foodViewModel.apply {
             observe(state, ::onViewStateChanged)
             failure(failure, ::handleFailure)
+            //Agarrar los parametos duramente
+            doGetFoodByCategory(args.food)
         }
     }
 
@@ -50,9 +53,9 @@ class FoodFragment : BaseFragment(R.layout.food_fragment) {
         adapter.addData(foods)
 
         //TODO: Agregar el detalle del platillo
-        /*adapter.listener = {
-            navController.navigate()
-        }*/
+        adapter.listener = {
+         //   navController.navigate()
+        }
 
         binding.reciclador.apply {
             isVisible = foods.isNotEmpty()
@@ -64,7 +67,7 @@ class FoodFragment : BaseFragment(R.layout.food_fragment) {
         binding = FoodFragmentBinding.bind(view)
         binding.lifecycleOwner = this
 
-        /*binding.searchBarFood.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        binding.searchBarFood.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextSubmit(query: String?): Boolean {
                 foodViewModel.doGetFoodByName(query ?: "")
@@ -76,7 +79,7 @@ class FoodFragment : BaseFragment(R.layout.food_fragment) {
                 return true
             }
 
-        })*/
+        })
 
         binding.SwipRefresh.setOnClickListener {
             //TODO: Reparar esta zona
@@ -89,6 +92,13 @@ class FoodFragment : BaseFragment(R.layout.food_fragment) {
             }
 
             adapter.changeView(newLayout)
+        }
+
+        //Algo
+
+        binding.apply {
+            lifecycleOwner = this@FoodFragment
+            food = args.food
         }
     }
 

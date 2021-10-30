@@ -12,7 +12,7 @@ import kotlinx.parcelize.Parcelize
 @JsonClass(generateAdapter = true)
 class Food(
     @PrimaryKey(autoGenerate = false)
-    val idFood: Int = 0,
+    val idMeal: Int = 0,
     @Json(name = "strMeal") val name: String = "",
     @Json(name = "strCategory") val category: String = "",
     @Json(name = "strArea") val originArea: String = "",

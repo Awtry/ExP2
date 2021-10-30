@@ -56,10 +56,10 @@ class FoodCategoryRepositoryImpl @Inject constructor(
         } else result
     }
 
-    override fun saveFoodCategory(foodCategories: List<FoodCategory>): Either<Failure, Boolean> {
+    override fun saveFoodCategory(categories: List<FoodCategory>): Either<Failure, Boolean> {
         //TODO: Hay que revisar todos estos apartados en otra vuelta
-        val result = foodCategoryDAO.onSaveFoodCategory(foodCategories)
-        return if (result.size == foodCategories.size) Either.Right(true)
+        val result = foodCategoryDAO.onSaveFoodCategory(categories)
+        return if (result.size == categories.size) Either.Right(true)
         else Either.Left(Failure.DatabaseError)
     }
 

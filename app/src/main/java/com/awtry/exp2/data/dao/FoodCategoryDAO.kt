@@ -15,9 +15,9 @@ interface FoodCategoryDAO {
     fun getAllFoodCategories(): List<FoodCategory>
 
     @Insert(onConflict = IGNORE)
-    fun onSaveFoodCategory(dishCategory: List<FoodCategory>): List<Long>
+    fun onSaveFoodCategory(categories: List<FoodCategory>): List<Long>
 
     @Update
-    fun onUpdateFoodCategory(dishCategory: FoodCategory): Int
+    fun onUpdateFoodCategory(categories: FoodCategory): Int
 
 }

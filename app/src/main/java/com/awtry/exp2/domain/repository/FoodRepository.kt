@@ -7,10 +7,12 @@ import com.awtry.exp2.domain.model.Food
 
 interface FoodRepository {
 
+    fun getFoodByCategory(name: String): Either<Failure, FoodResponse>
+
     fun getFoodByName(name: String): Either<Failure, FoodResponse>
 
-    fun saveFood(food: List<Food>): Either<Failure, Boolean>
+    fun saveFood(meals: List<Food>): Either<Failure, Boolean>
 
-    fun updateFood(food: Food): Either<Failure, Boolean>
+    fun updateFood(meals: Food): Either<Failure, Boolean>
 
 }

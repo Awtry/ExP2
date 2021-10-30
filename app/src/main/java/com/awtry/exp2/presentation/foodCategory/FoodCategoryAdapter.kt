@@ -33,7 +33,7 @@ class FoodCategoryAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = when (viewType) {
         //TODO: Encontrar la forma de poner el layout lineal simple
-        LayoutType.LINEAR.ordinal -> FoodCategoryAdapter.ViewHolderItem(
+        LayoutType.GRID.ordinal -> FoodCategoryAdapter.ViewHolderItem(
             GridCategoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
         else -> FoodCategoryAdapter.ViewHolderItem(

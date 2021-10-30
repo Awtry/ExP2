@@ -19,16 +19,16 @@ class FoodCategoryViewModel @Inject constructor(
     fun doGetFoodCategories(){
         getAllFoodCategories(UseCase.None()){
             it.fold(::handleFailure){
-                state.value = FoodCategoryViewState.FoodCategoryReceived(it.dishCategories ?: listOf())
+                state.value = FoodCategoryViewState.FoodCategoryReceived(it.categories ?: listOf())
 
-               // saveFoodCategory(it.dishCategories ?: listOf())
+                saveFoodCategory(it.categories ?: listOf())
                 true
             }
         }
     }
 
-    private fun saveFoodCategory(foodCategory: List<FoodCategory>){
-        saveCategory(foodCategory){
+    private fun saveFoodCategory(categories: List<FoodCategory>){
+        saveCategory(categories){
             it.fold(::handleFailure){
                 it
             }
