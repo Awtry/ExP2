@@ -54,7 +54,7 @@ class FoodFragment : BaseFragment(R.layout.food_fragment) {
 
         //TODO: Agregar el detalle del platillo
         adapter.listener = {
-         //   navController.navigate()
+            navController.navigate(FoodFragmentDirections.actionFoodFragment2ToFootDetail(it))
         }
 
         binding.reciclador.apply {

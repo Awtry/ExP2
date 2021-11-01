@@ -56,12 +56,11 @@ class FoodCategory : BaseFragment(R.layout.food_category_fragment) {
         //TODO: Pantalla vacía
         adapter.addDataCategory(categories)
 
-        //TODO: Detalle ?
+        //TODO: Revisar que si respete los campos peedidos
         adapter.listener = {
             navController.navigate(FoodCategoryDirections.actionFoodCategoryToFoodFragment2(it.nameCategory))
         }
 
-        //TODO: Reciclador
         binding.recicladorCategory.apply {
             isVisible = categories.isNotEmpty()
             adapter = this@FoodCategory.adapter

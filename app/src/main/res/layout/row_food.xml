@@ -8,6 +8,7 @@
         <variable
             name="item_food"
             type="com.awtry.exp2.domain.model.Food" />
+
     </data>
 
     <androidx.cardview.widget.CardView

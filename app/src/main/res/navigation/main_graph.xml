@@ -27,6 +27,20 @@
             app:argType="string"
             android:defaultValue="Fish"
             />
+        <action
+            android:id="@+id/action_foodFragment2_to_footDetail"
+            app:destination="@id/footDetail" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/footDetail"
+        android:name="com.awtry.exp2.presentation.foodDetail.FootDetail"
+        android:label="foot_detail_fragment"
+        tools:layout="@layout/foot_detail_fragment" >
+
+        <argument
+            android:name="foodDetail"
+            app:argType="com.awtry.exp2.domain.model.Food"/>
 
     </fragment>
 

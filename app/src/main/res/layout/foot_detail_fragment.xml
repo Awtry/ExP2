@@ -4,6 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".presentation.foodDetail.FootDetail">
 
+    <data>
+        <variable
+            name="detail"
+            type="com.awtry.exp2.domain.model.Food" />
+    </data>
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -12,16 +19,20 @@
             android:id="@+id/imgDetalle"
             android:layout_width="200dp"
             android:layout_height="200dp"
+            loadFromUrl="@{detail.picture}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-
+            app:layout_constraintBottom_toTopOf="@id/txtTituloDatalle"
             />
 
         <TextView
             android:id="@+id/txtTituloDatalle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:text="@{detail.name}"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             app:layout_constraintBottom_toTopOf="@id/txtCategoriaDetalle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -31,6 +42,9 @@
             android:id="@+id/txtCategoriaDetalle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:text="@{detail.category}"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             app:layout_constraintBottom_toTopOf="@id/txtInstruccionesDetalle"
             app:layout_constraintEnd_toStartOf="@id/txtAreaDetalle"
             app:layout_constraintStart_toStartOf="parent"
@@ -40,6 +54,9 @@
             android:id="@+id/txtAreaDetalle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:text="@{detail.originArea}"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             app:layout_constraintBottom_toTopOf="@id/txtInstruccionesDetalle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/txtCategoriaDetalle"
@@ -49,6 +66,9 @@
             android:id="@+id/txtInstruccionesDetalle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:text="@{detail.instructions}"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txtAreaDetalle"
@@ -58,6 +78,9 @@
             android:id="@+id/txtYoutubeDetalle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:text="@{detail.youtube}"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
